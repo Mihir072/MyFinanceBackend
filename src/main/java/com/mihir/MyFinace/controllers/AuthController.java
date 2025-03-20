@@ -38,6 +38,10 @@ public class AuthController {
     public User getUserByName(@PathVariable String name){
         return userService.getUserByName(name);
     }
+    @GetMapping("/user/{username}")
+    public User getUserByUsername(@PathVariable String username){
+        return userService.findByUsername(username);
+    }
 
     @PostMapping("/{userId}/transactions")
     public User addTransaction(@PathVariable String userId, @RequestBody Transaction transaction) {
