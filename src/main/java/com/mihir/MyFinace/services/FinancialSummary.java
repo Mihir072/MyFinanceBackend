@@ -5,7 +5,7 @@ public class FinancialSummary {
     private double totalExpenses;
     private double netBalance;
 
-    public FinancialSummary(double totalIncome, double totalExpenses) {
+    public FinancialSummary(double totalIncome, double totalExpenses, double netBalance) {
         this.totalIncome = totalIncome;
         this.totalExpenses = totalExpenses;
         this.netBalance = totalIncome - totalExpenses;

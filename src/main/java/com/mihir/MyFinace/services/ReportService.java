@@ -1,7 +1,6 @@
 package com.mihir.MyFinace.services;
 
 import com.mihir.MyFinace.models.Transaction;
-import com.mihir.MyFinace.repository.ReportRepository;
 import com.mihir.MyFinace.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +25,8 @@ public class ReportService {
                 .mapToDouble(Transaction::getAmount)
                 .sum();
 
-        return new FinancialSummary(totalIncome, totalExpenses);
+        double netBalance = totalIncome - totalExpenses; // ✅ Define netBalance
+
+        return new FinancialSummary(totalIncome, totalExpenses, netBalance);
     }
 }

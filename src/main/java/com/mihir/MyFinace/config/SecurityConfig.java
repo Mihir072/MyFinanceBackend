@@ -16,7 +16,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())  // Disable CSRF for API calls
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()  // Allow access without authentication
+                        .requestMatchers("/auth/**","/transactions/**","/{userId}/transactions/{txnId}").permitAll()  // Allow access without authentication
                         .anyRequest().authenticated()  // Require authentication for all other endpoints
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -25,7 +23,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User user) {
-        User authenticatedUser = userService.findByUsername(user.getUsername());
+        Optional<User> authenticatedUser = userService.findByUsername(user.getUsername());
 
         if (authenticatedUser != null && userService.authenticateUser(user.getUsername(), user.getPassword())) {
             return ResponseEntity.ok(authenticatedUser); // ✅ Return full user details
@@ -39,13 +37,13 @@ public class AuthController {
         return userService.getUserByName(name);
     }
     @GetMapping("/user/username/{username}")
-    public User getUserByUsername(@PathVariable String username){
+    public Optional<User> getUserByUsername(@PathVariable String username){
         return userService.findByUsername(username);
     }
 
-    @PostMapping("/{userId}/transactions")
-    public User addTransaction(@PathVariable String userId, @RequestBody Transaction transaction) {
-        return userService.addTransaction(userId, transaction);
+    @PostMapping("/{username}/transactions")
+    public User addTransaction(@PathVariable String username, @RequestBody Transaction transaction) {
+        return userService.addTransaction(username, transaction);
     }
 
     @DeleteMapping("/{userId}/transactions/{txnId}")
