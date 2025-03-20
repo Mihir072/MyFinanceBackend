@@ -34,11 +34,11 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/user/{name}")
+    @GetMapping("/user/name/{name}")
     public User getUserByName(@PathVariable String name){
         return userService.getUserByName(name);
     }
-    @GetMapping("/user/{username}")
+    @GetMapping("/user/username/{username}")
     public User getUserByUsername(@PathVariable String username){
         return userService.findByUsername(username);
     }
