@@ -3,6 +3,6 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17.0.1-jdk-slim
-COPY --from=build /target/doctorlist-0.0.1-SNAPSHOT.jar MyFinace.jar
+COPY --from=build /target/MyFinace-0.0.1-SNAPSHOT.jar MyFinace.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","MyFinace.jar"]
